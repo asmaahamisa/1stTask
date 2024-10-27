@@ -25,6 +25,8 @@ jobs:
       - name: Install xvfb
         run: sudo apt-get install xvfb
 
-      - name: Running the Python script
-        run: Senario_1.py
-        
+      - name: Run Selenium Tests
+        env:
+          DISPLAY: ":99.0"  # Required for headless mode on Linux
+        run: python Senario_1.py  # Run your Python script
+
