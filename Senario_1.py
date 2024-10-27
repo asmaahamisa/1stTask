@@ -17,7 +17,7 @@ options.add_argument("--no-sandbox") #bypass OS security model
 options.add_argument("--disable-dev-shm-usage") #overcome limited resource problems
 options.add_experimental_option("excludeSwitches", ["enable-automation"])
 options.add_experimental_option('useAutomationExtension', False)
-service = Service(r'C:\Program Files\Google\Chrome\Application\chrome.exe')
+service = Service(r'C:\Users\mhala\.cache\selenium\chromedriver\win64\129.0.6668.100\chromedriver.exe')
 #driver = webdriver.Chrome(options=options, executable_path=r'C:\Users\mhala\.cache\selenium\chromedriver\win64\129.0.6668.100\chromedriver.exe')
 driver = webdriver.Chrome(service=service, options=options)
 driver.get('http://google.com/')
