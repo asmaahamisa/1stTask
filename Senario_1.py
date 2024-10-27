@@ -5,27 +5,8 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException, NoSuchElementException
 from selenium.webdriver.support.ui import Select
 
-#
-from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.chrome.service import Service
-
-#options = Options()
-options = webdriver.ChromeOptions()
-options.binary_location = "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe"    #chrome binary location specified here
-options.add_argument("--start-maximized") #open Browser in maximized mode
-options.add_argument("--no-sandbox") #bypass OS security model
-options.add_argument("--disable-dev-shm-usage") #overcome limited resource problems
-options.add_experimental_option("excludeSwitches", ["enable-automation"])
-options.add_experimental_option('useAutomationExtension', False)
-service = Service(r'C:\Users\mhala\.wdm\drivers\chromedriver\win64\129.0.6668.100\chromedriver-win32\chromedriver.exe')
-#driver = webdriver.Chrome(options=options, executable_path=r'C:\Users\mhala\.cache\selenium\chromedriver\win64\129.0.6668.100\chromedriver.exe')
-driver = webdriver.Chrome(service=service, options=options)
-driver.get('http://google.com/')
-#
-
 # Initialize the WebDriver
-#driver = webdriver.Chrome()
+driver = webdriver.Chrome()
 
 
 # Open the website
