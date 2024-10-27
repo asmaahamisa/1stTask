@@ -1,32 +1,47 @@
-name: Run Selenium On GitHub Action
+# comment
+name: Run Python Code and Generate Report
+
 on:
   push:
-    branches: [master]  # Change to your default branch if necessary
+    branches:
+      - master  # Runs the workflow on push to main branch
   pull_request:
-    branches: [master]  # Change to your default branch if necessary
+    branches:
+      - master  # Also runs the workflow on pull requests to main
+
 jobs:
-  scrape:
-    runs-on: ubuntu-latest
+  build:
+    runs-on: ubuntu-latest  # GitHub Actions runs on Linux environments like Ubuntu by default
+
     steps:
-      - name: Checking out repo
+      # Step 1: Checkout the code from the repository
+      - name: Checkout Repository
         uses: actions/checkout@v3
-      - name: Setting up Python
+
+      # Step 2: Set up Python environment
+      - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.9'
-      - name: Installing package list
-        run: apt list --installed    
-      - name: Removing previous chrome instances on runner 
-        run: sudo apt purge google-chrome-stable  
-        
-       # Need to fetch reqs if needed
-      - name: Installing all necessary packages
-        run: pip install chromedriver-autoinstaller selenium pyvirtualdisplay
-      - name: Install xvfb
-        run: sudo apt-get install xvfb
+          python-version: '3.8'  # Specify the Python version
 
-      - name: Run Selenium Tests
-        env:
-          DISPLAY: ":99.0"  # Required for headless mode on Linux
-        run: python Senario_1.py  # Run your Python script
+      # Step 3: Install dependencies (if you have a requirements.txt file)
+      - name: Install Dependencies
+        run: |
+          if [ -f "requirements.txt" ]; then pip install -r requirements.txt; fi
 
+      # Step 4: Run the Python script
+      - name: Run Python Code
+        run: python Senario_1.py  # Replace with your Python file name
+
+      # Step 5: Generate HTML Report
+      - name: Generate HTML Report
+        run: |
+          mkdir -p artifacts
+          python Senario_1.py > artifacts/report.html  # Redirect output to an HTML file (customize as needed)
+
+      # Step 6: Upload the report as an artifact
+      - name: Upload HTML Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: python-report
+          path: artifacts/report.html
