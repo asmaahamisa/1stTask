@@ -41,6 +41,13 @@ jobs:
 
           # Get the corresponding ChromeDriver version
           CHROME_DRIVER_VERSION=$(curl -sS "https://chromedriver.storage.googleapis.com/LATEST_RELEASE_$CHROME_MAJOR_VERSION")
+          
+          # Check if the ChromeDriver version exists before downloading
+          if [ -z "$CHROME_DRIVER_VERSION" ]; then
+            echo "No ChromeDriver version found for Chrome $CHROME_VERSION. Exiting."
+            exit 1
+          fi
+
           wget -N "https://chromedriver.storage.googleapis.com/$CHROME_DRIVER_VERSION/chromedriver_linux64.zip" -P ~/
           unzip ~/chromedriver_linux64.zip -d ~/
           sudo mv -f ~/chromedriver /usr/local/bin/chromedriver
