@@ -38,7 +38,7 @@ jobs:
       - name: Generate HTML Report
         run: |
           mkdir -p artifacts
-          python SecondTaskV2.py > artifacts/report.html  # Redirect output to an HTML file (customize as needed)
+          python SecondTaskV2.py > artifacts/report-SecondTask.html  # Redirect output to an HTML file (customize as needed)
 
       # Step 6: Upload the report as an artifact
       - name: Upload HTML Report
