@@ -25,10 +25,10 @@ jobs:
         with:
           python-version: '3.8'  # Specify the Python version
 
-      # Step 3: Install dependencies (if you have a requirements1.txt file)
+      # Step 3: Install dependencies (if you have a SecondTaskRequirements.txt file)
       - name: Install Dependencies
         run: |
-          if [ -f "requirements.txt" ]; then pip install -r requirements1.txt; fi
+          if [ -f "SecondTaskRequirements.txt" ]; then pip install -r SecondTaskRequirements.txt; fi
 
       # Step 4: Run the Python script
       - name: Run Python Code
@@ -44,6 +44,6 @@ jobs:
       - name: Upload HTML Report
         uses: actions/upload-artifact@v4
         with:
-          name: python-report
-          path: artifacts/report.html
+          name: python-report-SecondTask
+          path: artifacts/report-SecondTask.html
 
